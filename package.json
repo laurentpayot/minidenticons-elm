@@ -1,0 +1,49 @@
+{
+  "name": "minidenticons-elm",
+  "version": "1.0.0",
+  "description": "Super lightweight SVG identicon generator for Elm",
+  "author": "Laurent Payot",
+  "license": "MIT",
+  "keywords": [
+    "identicon",
+    "generator",
+    "svg",
+    "avatar",
+    "icon",
+    "lightweight",
+    "light",
+    "elm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurentpayot/minidenticons-elm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/laurentpayot/minidenticons-elm/issues"
+  },
+  "homepage": "https://laurentpayot.github.io/minidenticons-elm",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./minidenticons.js",
+  "exports": "./minidenticons.js",
+  "files": [
+    "minidenticons*.js*",
+    "index.d.ts"
+  ],
+  "engines": {
+    "node": ">=13.2.0"
+  },
+  "scripts": {
+    "build-js": "terser minidenticons.js --compress module=true --mangle module=true --source-map --output minidenticons.min.js",
+    "size": "echo \"\nMinified gzip size:\t`gzip -9cn minidenticons.min.js | wc -c` bytes\nMinified brotli size:\t`brotli -Zcn minidenticons.min.js | wc -c` bytes\n\"",
+    "build": "npm run build-js && npm run size",
+    "test": "node tests",
+    "preversion": "npm run build && npm test",
+    "postversion": "git push && git push --tags && npm publish",
+    "serve": "python3 -m http.server"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "terser": "^5.10.0"
+  }
+}
