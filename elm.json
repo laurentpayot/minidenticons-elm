@@ -2,7 +2,7 @@
     "type": "package",
     "name": "laurentpayot/minidenticons",
     "summary": "Super lightweight SVG identicon generator for Elm",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "version": "1.0.0",
     "exposed-modules": [
         "Minidenticons"
