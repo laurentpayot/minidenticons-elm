@@ -6,8 +6,7 @@ Super lightweight SVG identicon generator.
 [![elm version](https://badgen.net/elm-package/elm/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
 [![license](https://badgen.net/elm-package/license/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/LICENSE)
 
-[![Minidenticons](https://laurentpayot.github.io/minidenticons-elm/img/minidenticons.png)](https://laurentpayot.github.io/minidenticons/)
-
+[![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons.png)](https://laurentpayot.github.io/minidenticons/)
 
 ## Why
 
@@ -31,7 +30,7 @@ identicon 50 50 "alienHead66"
 
 For instance with the `alienHead66` username you will get the following identicon (for a saturation and lightness of 50%):
 
-![Minidenticons]((<https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66-150.svg>)
+![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
 
 - Note that the picture above is resized. [By default identicons will take all the space available.](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66.svg)
 
