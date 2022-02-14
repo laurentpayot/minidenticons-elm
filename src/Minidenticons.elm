@@ -2,7 +2,7 @@ module Minidenticons exposing (identicon)
 
 {-| Generate identicons (pixelated avatars) on the client from usernames instead of fetching images from a server!
 
-# Definition
+# SVG identicon
 @docs identicon
 
 -}
@@ -47,9 +47,27 @@ pseudoFNV1a str =
         )
         offsetBasis
 
-{-| Generates the SVG identicon from the saturation, lightness and username parameters.
+{-| Generate the SVG identicon.
+
+The `identicon` function will return a ~~SVG string~~ **TODO** generated from its username string argument. The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
 
     identicon 50 50 "alienHead66"
+
+
+For instance with the example above you will get the following identicon:
+
+![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
+
+- Note that the picture above is resized. [By default identicons will take all the space available.](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66.svg)
+
+- The white space around the colored squares is here to allow uncropped circle avatars like the ones you can see in [the demo](https://laurentpayot.github.io/minidenticons/).
+
+Play with [the demo](https://laurentpayot.github.io/minidenticons/) to find a combination of saturation and lightness that matches your website theme colors: light, dark, pastel or whatever 😎
+
+![Minidenticons light](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_light.png)
+![Minidenticons dark](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_dark.png)
+![Minidenticons pastel](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_pastel.png)
+
 -}
 identicon : Int -> Int -> String -> Html msg
 identicon saturation lightness username =

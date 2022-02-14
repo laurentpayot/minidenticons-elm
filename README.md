@@ -6,7 +6,7 @@ Super lightweight SVG identicon generator.
 [![elm version](https://badgen.net/elm-package/elm/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
 [![license](https://badgen.net/elm-package/license/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/LICENSE)
 
-[![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons.png)](https://laurentpayot.github.io/minidenticons/)
+![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons.png)
 
 ## Why
 
@@ -14,42 +14,14 @@ Generate identicons (pixelated avatars) on the client from usernames instead of 
 
 ## Live Demo 🎮
 
-Play with it [here](https://laurentpayot.github.io/minidenticons/).
-
-## Usage
-
-```elm
-identicon : Int -> Int -> Html msg
-```
-
-The `identicon` function will return a SVG string generated from its username string argument. The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
-
-```elm
-identicon 50 50 "alienHead66"
-```
-
-For instance with the `alienHead66` username you will get the following identicon (for a saturation and lightness of 50%):
-
-![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
-
-- Note that the picture above is resized. [By default identicons will take all the space available.](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66.svg)
-
-- The white space around the colored squares is here to allow uncropped circle avatars like the ones you can see in [the demo](https://laurentpayot.github.io/minidenticons/).
-
-### Color Customization
-
-Play with [the demo](https://laurentpayot.github.io/minidenticons/) to find a combination of saturation and lightness that matches your website theme colors: light, dark, pastel or whatever 😎
-
-![Minidenticons light](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_light.png)
-![Minidenticons dark](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_dark.png)
-![Minidenticons pastel](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_pastel.png)
+Play with the [JavaScript version](https://github.com/laurentpayot/minidenticons) of Minidenticons [here](https://laurentpayot.github.io/minidenticons/).
 
 ## Collisions
 
 You will always get the same identicon for a given username. But it is not impossible to have different usernames with the same identicon. That's a [collision](https://en.wikipedia.org/wiki/Hash_collision).
 
 Generated identicons are 5×5 pixels large with vertical symmetry, and can have 18 different hues for the same saturation and lightness.
-This means there are 2⁽³×⁵⁾ × 18 = 589,824 different identicons possible, but actually much less because of the modulo-based algorithm used to get more colored pixels at the center of the identicon instead of having them scattered. So duplicate identicons are inevitable when using a lot of them. It shouldn’t matter as identicons should not be used solely to identify an user, and should always be coupled to a *unique* username :wink:
+This means there are 2⁽³×⁵⁾ × 18 = 589,824 different identicons possible, but actually much less because of the modulo-based algorithm used to get more colored pixels at the center of the identicon instead of having them scattered. So duplicate identicons are inevitable when using a lot of them. It shouldn’t matter as identicons should not be used solely to identify an user, and should always be coupled to a *unique* username 😉
 
 Tests results below show that you have roughly a 7% chance to generate a duplicate identicon when already using 1000 of them.
 
