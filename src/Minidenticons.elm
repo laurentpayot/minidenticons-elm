@@ -36,7 +36,7 @@ offsetBasis = 2166136261
 
 {-| [FNV1a][fnv]-like hash function used by Minidenticons. Always return a **positive** integer.
 
-    pseudoFNV1a 0 "alienHead66" -- 39870209603664160
+    pseudoFNV1a "alienHead66" -- 39870209603664160
 
 [fnv]: http://www.isthe.com/chongo/tech/comp/fnv/index.html
 -}
