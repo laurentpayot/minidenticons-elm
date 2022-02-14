@@ -1,9 +1,12 @@
-module Minidenticons exposing (identicon)
+module Minidenticons exposing (identicon, pseudoFNV1a)
 
 {-| Generate identicons (pixelated avatars) on the client from usernames instead of fetching images from a server!
 
 # SVG identicon
 @docs identicon
+
+# Bonus
+@docs pseudoFNV1a
 
 -}
 
@@ -31,7 +34,12 @@ offsetBasis : Int
 offsetBasis = 2166136261
 
 
--- FNV1a-like hash function http://www.isthe.com/chongo/tech/comp/fnv/index.html
+{-| [FNV1a][fnv]-like hash function used by Minidenticons. Always return a **positive** integer.
+
+    pseudoFNV1a 0 "alienHead66" -- 39870209603664160
+
+[fnv]: http://www.isthe.com/chongo/tech/comp/fnv/index.html
+-}
 pseudoFNV1a : String -> Int
 pseudoFNV1a str =
     str
