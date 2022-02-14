@@ -1,4 +1,12 @@
-module Minidenticons exposing (..)
+module Minidenticons exposing (identicon)
+
+{-| Generate identicons (pixelated avatars) on the client from usernames instead of fetching images from a server!
+
+# Definition
+@docs identicon
+
+-}
+
 
 import Bitwise
 import Html exposing (Html)
@@ -39,9 +47,12 @@ pseudoFNV1a str =
         )
         offsetBasis
 
--- TODO https://package.elm-lang.org/help/documentation-format
-identicon : String -> Int -> Int -> Html msg
-identicon username saturation lightness =
+{-| Generates the SVG identicon from the saturation, lightness and username parameters.
+
+    identicon 50 50 "alienHead66"
+-}
+identicon : Int -> Int -> String -> Html msg
+identicon saturation lightness username =
     let
         hash : Int
         hash = pseudoFNV1a username
