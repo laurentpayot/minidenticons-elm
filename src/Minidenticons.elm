@@ -10,7 +10,6 @@ module Minidenticons exposing (identicon, pseudoFNV1a)
 
 -}
 
-
 import Bitwise
 import Html exposing (Html)
 import Svg exposing (svg, rect)
@@ -34,11 +33,10 @@ offsetBasis : Int
 offsetBasis = 2166136261
 
 
-{-| [FNV1a][fnv]-like hash function used by Minidenticons. Always return a **positive** integer.
+{-| [FNV1a][http://www.isthe.com/chongo/tech/comp/fnv/index.html]-like hash function used by Minidenticons. Always return a **positive** integer.
 
     pseudoFNV1a "alienHead66" -- 39870209603664160
 
-[fnv]: http://www.isthe.com/chongo/tech/comp/fnv/index.html
 -}
 pseudoFNV1a : String -> Int
 pseudoFNV1a str =
@@ -57,12 +55,12 @@ pseudoFNV1a str =
 
 {-| Generate the SVG identicon.
 
-The `identicon` function will return a ~~SVG string~~ **TODO** generated from its username string argument. The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
+The `identicon` function will return a SVG element generated from its username string argument. The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
 
     identicon 50 50 "alienHead66"
 
 
-For instance with the example above you will get the following identicon:
+With the above example you will get the following identicon:
 
 ![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
 
