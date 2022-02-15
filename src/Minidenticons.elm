@@ -83,7 +83,11 @@ identicon saturation lightness username =
         hash : Int
         hash = pseudoFNV1a username
         hue : Int
-        hue = (modBy colorsNb (hash // fnvPrime)) * (360 // colorsNb)
+        hue =
+            hash // fnvPrime
+            |> Bitwise.shiftRightZfBy 0 -- needed to avoid negative values
+            |> modBy colorsNb
+            |> (*) (360 // colorsNb)
     in
     svg [ viewBox "-1.5 -1.5 8 8"
         , fill <|
