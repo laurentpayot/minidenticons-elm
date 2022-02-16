@@ -48,16 +48,15 @@ simpleHashTest =
                     Expect.notEqual (simpleHash randomStr1) (simpleHash randomStr2)
         ]
 
-
-fooXys : List (Int, Int)
-fooXys = [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
-
-checkSquares : List (Int, Int) -> List (Q.Multiple msg -> Expectation)
-checkSquares =
-    List.indexedMap <|
-        \i (xInt, yInt) ->
-            Q.index i >> Q.has
-                [ attribute (x (String.fromInt xInt)), attribute (y (String.fromInt yInt)) ]
+checkSquares : List (Int, Int) -> Q.Multiple msg -> Expectation
+checkSquares xys =
+    Expect.all <|
+        List.indexedMap
+            (\i (xInt, yInt) ->
+                Q.index i >> Q.has
+                    [ attribute (x (String.fromInt xInt)), attribute (y (String.fromInt yInt)) ]
+            )
+            xys
 
 identiconTest : Test
 identiconTest =
@@ -76,6 +75,9 @@ identiconTest =
                 <rect x="3" y="1" width="1" height="1" />
             </svg>
             -}
+            let
+                squares = [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
+            in
             "foo"
             |> identicon 75 50
             |> Q.fromHtml
@@ -88,10 +90,9 @@ identiconTest =
                     ]
                 , Q.children [] >>
                     Expect.all
-                        ([ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
-                        , Q.count (Expect.equal 7)
+                        [ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
+                        , Q.count (Expect.equal (List.length squares))
+                        , checkSquares squares
                         ]
-                        ++ (checkSquares [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ])
-                        )
                 ]
         ]
