@@ -14,7 +14,6 @@
         "elm/svg": "1.0.1 <= v < 2.0.0"
     },
     "test-dependencies": {
-        "elm/random": "1.0.0 <= v < 2.0.0",
         "elm-explorations/test": "1.2.2 <= v < 2.0.0"
     }
 }
