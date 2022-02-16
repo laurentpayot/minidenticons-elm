@@ -76,9 +76,9 @@ identiconTest =
                     -- xmlns attribute not available https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
                     , attribute (fill "hsl(60 50% 50%)")
                     ]
+                , Q.children [] >> Q.count (Expect.equal 7)
                 , Q.children [] >>
                     Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
-
                 , Q.children [] >> Q.index 0 >> Q.has [ attribute (x "1"), attribute (y "1") ]
                 , Q.children [] >> Q.index 1 >> Q.has [ attribute (x "2"), attribute (y "0") ]
                 , Q.children [] >> Q.index 2 >> Q.has [ attribute (x "2"), attribute (y "1") ]
