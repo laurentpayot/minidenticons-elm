@@ -14,7 +14,7 @@ Generate identicons (pixelated avatars) on the client from usernames instead of 
 
 ## Live Demo 🎮
 
-Play with the [JavaScript version](https://github.com/laurentpayot/minidenticons) of Minidenticons [here](https://laurentpayot.github.io/minidenticons/).
+Play with the JavaScript version of Minidenticons [here](https://laurentpayot.github.io/minidenticons/).
 
 ## Collisions
 

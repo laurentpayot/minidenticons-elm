@@ -1,6 +1,6 @@
 module Minidenticons exposing (identicon, simpleHash)
 
-{-| Generate identicons (pixelated avatars) on the client from usernames instead of fetching images from a server!
+{-| This library contains the main `identicon` function as well as a bonus `simpleHash` function.
 
 # SVG identicon
 @docs identicon
