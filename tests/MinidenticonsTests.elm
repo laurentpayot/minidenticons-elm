@@ -77,14 +77,16 @@ identiconTest =
                     , attribute (fill "hsl(60 75% 50%)")
                     ]
                 , Q.children [] >>
-                    Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
-                , Q.children [] >> Q.count (Expect.equal 7)
-                , Q.children [] >> Q.index 0 >> Q.has [ attribute (x "1"), attribute (y "1") ]
-                , Q.children [] >> Q.index 1 >> Q.has [ attribute (x "2"), attribute (y "0") ]
-                , Q.children [] >> Q.index 2 >> Q.has [ attribute (x "2"), attribute (y "1") ]
-                , Q.children [] >> Q.index 3 >> Q.has [ attribute (x "2"), attribute (y "2") ]
-                , Q.children [] >> Q.index 4 >> Q.has [ attribute (x "2"), attribute (y "3") ]
-                , Q.children [] >> Q.index 5 >> Q.has [ attribute (x "2"), attribute (y "4") ]
-                , Q.children [] >> Q.index 6 >> Q.has [ attribute (x "3"), attribute (y "1") ]
+                    Expect.all
+                        [ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
+                        , Q.count (Expect.equal 7)
+                        , Q.index 0 >> Q.has [ attribute (x "1"), attribute (y "1") ]
+                        , Q.index 1 >> Q.has [ attribute (x "2"), attribute (y "0") ]
+                        , Q.index 2 >> Q.has [ attribute (x "2"), attribute (y "1") ]
+                        , Q.index 3 >> Q.has [ attribute (x "2"), attribute (y "2") ]
+                        , Q.index 4 >> Q.has [ attribute (x "2"), attribute (y "3") ]
+                        , Q.index 5 >> Q.has [ attribute (x "2"), attribute (y "4") ]
+                        , Q.index 6 >> Q.has [ attribute (x "3"), attribute (y "1") ]
+                        ]
                 ]
         ]
