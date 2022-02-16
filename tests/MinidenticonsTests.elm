@@ -1,10 +1,16 @@
 module MinidenticonsTests exposing (..)
 
 import Test exposing (..)
-import Expect exposing (Expectation)
+import Test.Html.Query as Query
+import Test.Html.Selector exposing (text, tag, attribute)
 import Fuzz exposing (string, tuple)
+import Expect exposing (Expectation)
 
-import Minidenticons exposing (simpleHash)
+import Svg exposing (svg, rect)
+import Svg.Attributes exposing (fill, viewBox, height, width)
+
+import Minidenticons exposing (simpleHash, identicon)
+import Debug exposing (log)
 
 
 -- workaround for https://github.com/elm-explorations/test/issues/136
@@ -40,5 +46,25 @@ simpleHashTest =
             suchThat (\(randomStr1, randomStr2) -> randomStr1 /= randomStr2) <|
                 \(randomStr1, randomStr2) ->
                     Expect.notEqual (simpleHash randomStr1) (simpleHash randomStr2)
+        ]
 
+
+identiconTest : Test
+identiconTest =
+
+    describe "identicon"
+
+        [ test "'foo' username" <| \_ ->
+            "foo"
+            |> identicon 50 50
+            |> Query.fromHtml
+            -- |> Query.has [ tag "svg" ]
+            |> log "query"
+            |> Query.findAll [ tag "rect" ]
+            |> Query.each
+                (Expect.all
+                    [ Query.has [ tag "rect" ]
+                    , Query.has [ attribute (height "1"), attribute (width "1") ]
+                    ]
+                )
         ]
