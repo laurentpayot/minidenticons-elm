@@ -1,4 +1,4 @@
-module Minidenticons exposing (identicon, pseudoFNV1a)
+module Minidenticons exposing (identicon, simpleHash)
 
 {-| Generate identicons (pixelated avatars) on the client from usernames instead of fetching images from a server!
 
@@ -6,7 +6,7 @@ module Minidenticons exposing (identicon, pseudoFNV1a)
 @docs identicon
 
 # Bonus
-@docs pseudoFNV1a
+@docs simpleHash
 
 -}
 
@@ -33,13 +33,15 @@ offsetBasis : Int
 offsetBasis = 2166136261
 
 
-{-| [FNV1a][http://www.isthe.com/chongo/tech/comp/fnv/index.html]-like hash function used by Minidenticons. Always return a **positive** integer.
+{-| Hash function used by Minidenticons.
+Based on the [FNV1a](http://www.isthe.com/chongo/tech/comp/fnv/index.html) hash algorithm, modified for *signed* 32 bit integers.
+Always return a *positive* integer.
 
-    pseudoFNV1a "alienHead66" -- 39870209603664160
+    simpleHash "alienHead66" -- 39870209603664160
 
 -}
-pseudoFNV1a : String -> Int
-pseudoFNV1a str =
+simpleHash : String -> Int
+simpleHash str =
     str
     |> String.toList
     |> List.foldl
@@ -55,12 +57,14 @@ pseudoFNV1a str =
 
 {-| Generate the SVG identicon.
 
-The `identicon` function will return a SVG element generated from its username string argument. The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
+The `identicon` function will return a SVG element generated from its username string argument.
+The saturation and lightness arguments have to be percentages, i.e integers between 0 and 100.
 
-    identicon 50 50 "alienHead66"
+For instance for the username "alienHead66", with a saturation of 75% and a lightness of 50%:
 
+    identicon 75 50 "alienHead66"
 
-With the above example you will get the following identicon:
+You will get the following identicon (without the border):
 
 ![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
 
@@ -79,7 +83,7 @@ identicon : Int -> Int -> String -> Html msg
 identicon saturation lightness username =
     let
         hash : Int
-        hash = pseudoFNV1a username
+        hash = simpleHash username
         hue : Int
         hue =
             hash // fnvPrime
