@@ -56,7 +56,7 @@ identiconTest =
 
         [ test "'foo' username" <| \_ ->
             {-
-            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 50% 50%)">
+            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
                 <rect x="1" y="1" width="1" height="1" />
                 <rect x="2" y="0" width="1" height="1" />
                 <rect x="2" y="1" width="1" height="1" />
@@ -67,18 +67,18 @@ identiconTest =
             </svg>
             -}
             "foo"
-            |> identicon 50 50
+            |> identicon 75 50
             |> Q.fromHtml
             |> Expect.all
                 [ Q.has
                     [ tag "svg"
                     , attribute (viewBox "-1.5 -1.5 8 8")
                     -- xmlns attribute not available https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
-                    , attribute (fill "hsl(60 50% 50%)")
+                    , attribute (fill "hsl(60 75% 50%)")
                     ]
-                , Q.children [] >> Q.count (Expect.equal 7)
                 , Q.children [] >>
                     Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
+                , Q.children [] >> Q.count (Expect.equal 7)
                 , Q.children [] >> Q.index 0 >> Q.has [ attribute (x "1"), attribute (y "1") ]
                 , Q.children [] >> Q.index 1 >> Q.has [ attribute (x "2"), attribute (y "0") ]
                 , Q.children [] >> Q.index 2 >> Q.has [ attribute (x "2"), attribute (y "1") ]
