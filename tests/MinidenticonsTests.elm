@@ -49,6 +49,16 @@ simpleHashTest =
         ]
 
 
+fooXys : List (Int, Int)
+fooXys = [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
+
+checkSquares : List (Int, Int) -> List (Q.Multiple msg -> Expectation)
+checkSquares =
+    List.indexedMap <|
+        \i (xInt, yInt) ->
+            Q.index i >> Q.has
+                [ attribute (x (String.fromInt xInt)), attribute (y (String.fromInt yInt)) ]
+
 identiconTest : Test
 identiconTest =
 
@@ -78,15 +88,10 @@ identiconTest =
                     ]
                 , Q.children [] >>
                     Expect.all
-                        [ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
+                        ([ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
                         , Q.count (Expect.equal 7)
-                        , Q.index 0 >> Q.has [ attribute (x "1"), attribute (y "1") ]
-                        , Q.index 1 >> Q.has [ attribute (x "2"), attribute (y "0") ]
-                        , Q.index 2 >> Q.has [ attribute (x "2"), attribute (y "1") ]
-                        , Q.index 3 >> Q.has [ attribute (x "2"), attribute (y "2") ]
-                        , Q.index 4 >> Q.has [ attribute (x "2"), attribute (y "3") ]
-                        , Q.index 5 >> Q.has [ attribute (x "2"), attribute (y "4") ]
-                        , Q.index 6 >> Q.has [ attribute (x "3"), attribute (y "1") ]
                         ]
+                        ++ (checkSquares [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ])
+                        )
                 ]
         ]
