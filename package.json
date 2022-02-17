@@ -27,6 +27,7 @@
   },
   "scripts": {
     "update": "ncu -u --pre beta && npm i",
+    "build": "elm make",
     "test": "elm-test",
     "serve": "edp -b -p 5000"
   },
