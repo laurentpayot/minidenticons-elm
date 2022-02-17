@@ -2,15 +2,15 @@ module MinidenticonsTests exposing (..)
 
 import Test exposing (..)
 import Test.Html.Query as Q
-import Test.Html.Selector exposing (text, tag, attribute)
+import Test.Html.Selector exposing (tag, attribute)
 import Fuzz exposing (string, tuple)
 import Expect exposing (Expectation)
 
-import Svg exposing (svg, rect)
+import Html exposing (Html)
 import Svg.Attributes exposing (viewBox, fill, x, y, height, width)
+import String exposing (fromInt)
 
 import Minidenticons exposing (simpleHash, identicon)
-import Debug exposing (log)
 
 
 -- workaround for https://github.com/elm-explorations/test/issues/136
@@ -20,7 +20,6 @@ suchThat filter expect value =
         expect value
     else
         Expect.pass
-
 
 simpleHashTest : Test
 simpleHashTest =
@@ -48,15 +47,34 @@ simpleHashTest =
                     Expect.notEqual (simpleHash randomStr1) (simpleHash randomStr2)
         ]
 
+
 checkSquares : List (Int, Int) -> Q.Multiple msg -> Expectation
-checkSquares xys =
+checkSquares squares =
     Expect.all <|
         List.indexedMap
             (\i (xInt, yInt) ->
-                Q.index i >> Q.has
-                    [ attribute (x (String.fromInt xInt)), attribute (y (String.fromInt yInt)) ]
+                Q.index i >> Q.has [ attribute (x (fromInt xInt)), attribute (y (fromInt yInt)) ]
             )
-            xys
+            squares
+
+checkIdenticon : Int -> Int -> Int -> List (Int, Int) -> Html msg -> Expectation
+checkIdenticon saturation lightness hue squares =
+    Q.fromHtml
+    >> Expect.all
+        [ Q.has
+            [ tag "svg"
+            , attribute (viewBox "-1.5 -1.5 8 8")
+            -- xmlns attribute not available https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
+            , attribute <| fill <|
+                "hsl(" ++ fromInt hue ++ " " ++ fromInt saturation ++ "% " ++ fromInt lightness ++ "%)"
+            ]
+        , Q.children []
+          >> Expect.all
+                [ Q.each <| Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ]
+                , Q.count <| Expect.equal (List.length squares)
+                , checkSquares squares
+                ]
+        ]
 
 identiconTest : Test
 identiconTest =
@@ -75,24 +93,8 @@ identiconTest =
                 <rect x="3" y="1" width="1" height="1" />
             </svg>
             -}
-            let
-                squares = [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
-            in
             "foo"
             |> identicon 75 50
-            |> Q.fromHtml
-            |> Expect.all
-                [ Q.has
-                    [ tag "svg"
-                    , attribute (viewBox "-1.5 -1.5 8 8")
-                    -- xmlns attribute not available https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
-                    , attribute (fill "hsl(60 75% 50%)")
-                    ]
-                , Q.children [] >>
-                    Expect.all
-                        [ Q.each (Q.has [ tag "rect", attribute (height "1"), attribute (width "1") ])
-                        , Q.count (Expect.equal (List.length squares))
-                        , checkSquares squares
-                        ]
-                ]
+            |> checkIdenticon 75 50
+                60 [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
         ]
