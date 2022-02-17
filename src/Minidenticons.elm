@@ -35,8 +35,8 @@ offsetBasis = 2166136261
 
 
 {-| Hash function used by Minidenticons.
-Based on the [FNV1a](http://www.isthe.com/chongo/tech/comp/fnv/index.html) hash algorithm, modified for *signed* 32 bit integers.
-Always return a *positive* integer.
+Based on the [FNV1a](http://www.isthe.com/chongo/tech/comp/fnv/index.html) hash algorithm,
+modified for *signed* 32 bit integers. Always return a *positive* integer.
 
     simpleHash "alienHead66" -- 39870209603664160
 
@@ -70,9 +70,11 @@ You will get the following identicon (without the border):
 [!["alienHead66" identicon](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66_150.svg)
 - Note that the picture above is resized. [By default identicons will take all the space available.](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/alienHead66.svg)
 
-- The white space around the colored squares is here to allow uncropped circle avatars like the ones you can see in [the demo](https://laurentpayot.github.io/minidenticons/).
+- The white space around the colored squares is here to allow uncropped circle avatars like the ones
+you can see in [the demo](https://laurentpayot.github.io/minidenticons/).
 
-Play with [the demo](https://laurentpayot.github.io/minidenticons/) to find a combination of saturation and lightness that matches your website theme colors: light, dark, pastel or whatever 😎
+Play with [the demo](https://laurentpayot.github.io/minidenticons/) to find a combination of
+saturation and lightness that matches your website theme colors: light, dark, pastel or whatever 😎
 
 ![Minidenticons light](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_light.png)
 ![Minidenticons dark](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons_dark.png)
