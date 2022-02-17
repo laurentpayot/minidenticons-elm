@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/laurentpayot/minidenticons-elm/issues"
   },
-  "homepage": "https://package.elm-lang.org/packages/laurentpayot/minidenticons/latest",
+  "homepage": "https://package.elm-lang.org/packages/laurentpayot/minidenticons-elm/latest",
   "engines": {
     "node": ">=13.2.0"
   },
