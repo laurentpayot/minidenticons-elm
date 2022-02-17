@@ -28,8 +28,6 @@
   "scripts": {
     "update": "ncu -u --pre beta && npm i",
     "test": "elm-test",
-    "preversion": "npm run build && npm test",
-    "postversion": "git push && git push --tags && npm publish",
     "serve": "edp -b -p 5000"
   },
   "devDependencies": {
