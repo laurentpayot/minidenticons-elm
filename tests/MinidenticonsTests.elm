@@ -53,12 +53,15 @@ simpleHashTest =
 
 checkSquares : List (Int, Int) -> Q.Multiple msg -> Expectation
 checkSquares squares =
-    Expect.all <|
-        List.indexedMap
-            (\i (xInt, yInt) ->
-                Q.index i >> Q.has [ attribute (x (fromInt xInt)), attribute (y (fromInt yInt)) ]
-            )
-            squares
+    if squares == [] then
+        \_ -> Expect.pass
+    else
+        Expect.all <|
+            List.indexedMap
+                (\i (xInt, yInt) ->
+                    Q.index i >> Q.has [ attribute (x (fromInt xInt)), attribute (y (fromInt yInt)) ]
+                )
+                squares
 
 checkIdenticon : Int -> Int -> Int -> List (Int, Int) -> Html msg -> Expectation
 checkIdenticon saturation lightness hue squares =
@@ -84,7 +87,17 @@ identiconTest =
 
     describe "identicon"
 
-        [ test "'foo' username" <| \_ ->
+        [ test "empty string username" <| \_ ->
+            {-
+            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
+            </svg>
+            -}
+            ""
+            |> identicon 75 50
+            |> checkIdenticon 75 50
+                60 []
+
+        , test "'foo' username" <| \_ ->
             {-
             <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
                 <rect x="1" y="1" width="1" height="1" />
@@ -100,4 +113,32 @@ identiconTest =
             |> identicon 75 50
             |> checkIdenticon 75 50
                 60 [ (1, 1), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1) ]
+
+        , test "'alienHead66' username" <| \_ ->
+            {-
+            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(0 75% 50%)">
+                <rect x="0" y="0" width="1" height="1" />
+                <rect x="0" y="2" width="1" height="1" />
+                <rect x="1" y="1" width="1" height="1" />
+                <rect x="1" y="3" width="1" height="1" />
+                <rect x="1" y="4" width="1" height="1" />
+                <rect x="2" y="1" width="1" height="1" />
+                <rect x="2" y="2" width="1" height="1" />
+                <rect x="2" y="3" width="1" height="1" />
+                <rect x="2" y="4" width="1" height="1" />
+                <rect x="4" y="0" width="1" height="1" />
+                <rect x="4" y="2" width="1" height="1" />
+                <rect x="3" y="1" width="1" height="1" />
+                <rect x="3" y="3" width="1" height="1" />
+                <rect x="3" y="4" width="1" height="1" />
+            </svg>
+            -}
+            "alienHead66"
+            |> identicon 75 50
+            |> checkIdenticon 75 50
+                0
+                [ (0, 0), (0, 2), (1, 1), (1, 3), (1, 4), (2, 1), (2, 2)
+                , (2, 3), (2, 4), (4, 0), (4, 2), (3, 1), (3, 3), (3, 4)
+                ]
+
         ]

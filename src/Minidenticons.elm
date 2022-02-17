@@ -109,4 +109,4 @@ identicon saturation lightness username =
                 else
                     Nothing
             )
-            (List.range 0 24)
+            <| if username == "" then [] else List.range 0 24
