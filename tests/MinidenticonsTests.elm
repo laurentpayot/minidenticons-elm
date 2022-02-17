@@ -12,8 +12,6 @@ import Svg.Attributes exposing (viewBox, fill, x, y, height, width)
 import String exposing (fromInt)
 
 import Minidenticons exposing (simpleHash, identicon)
-import Html exposing (Html)
-import Html exposing (Html)
 
 
 -- workaround for https://github.com/elm-explorations/test/issues/136
