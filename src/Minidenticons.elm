@@ -12,8 +12,9 @@ module Minidenticons exposing (identicon, simpleHash)
 
 import Bitwise
 import Html exposing (Html)
+import Html.Attributes exposing (attribute)
 import Svg exposing (svg, rect)
-import Svg.Attributes exposing (viewBox, fill)
+import Svg.Attributes exposing (viewBox, fill, x, y, width, height)
 import String exposing (fromInt)
 
 
@@ -91,18 +92,21 @@ identicon saturation lightness username =
             |> (*) (360 // colorsNb)
     in
     svg [ viewBox "-1.5 -1.5 8 8"
+        , attribute "xmlns" "http://www.w3.org/2000/svg"
         , fill <|
             "hsl(" ++ fromInt hue ++ " " ++ fromInt saturation ++ "% " ++ fromInt lightness ++ "%)"
         ] <|
-        List.filterMap (\i ->
-            -- 2 + ((3 * 5 - 1) - modulo) to concentrate squares at the center
-            if modBy (16 - modBy 15 i) hash < squareDensity then
-                Just <|
-                    rect [ Svg.Attributes.x <| fromInt <| if i > 14 then 7 - i // 5 else i // 5
-                        , Svg.Attributes.y <| fromInt <| modBy 5 i
-                        , Svg.Attributes.width "1"
-                        , Svg.Attributes.height "1"
+        List.filterMap
+            (\i ->
+                -- 2 + ((3 * 5 - 1) - modulo) to concentrate squares at the center
+                if modBy (16 - modBy 15 i) hash < squareDensity then
+                    Just <| rect
+                        [ x <| fromInt <| if i > 14 then 7 - i // 5 else i // 5
+                        , y <| fromInt <| modBy 5 i
+                        , width "1"
+                        , height "1"
                         ] []
-            else
-                Nothing
-        ) (List.range 0 24)
+                else
+                    Nothing
+            )
+            (List.range 0 24)

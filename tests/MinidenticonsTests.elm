@@ -7,10 +7,13 @@ import Fuzz exposing (string, tuple)
 import Expect exposing (Expectation)
 
 import Html exposing (Html)
+import Html.Attributes
 import Svg.Attributes exposing (viewBox, fill, x, y, height, width)
 import String exposing (fromInt)
 
 import Minidenticons exposing (simpleHash, identicon)
+import Html exposing (Html)
+import Html exposing (Html)
 
 
 -- workaround for https://github.com/elm-explorations/test/issues/136
@@ -64,7 +67,7 @@ checkIdenticon saturation lightness hue squares =
         [ Q.has
             [ tag "svg"
             , attribute (viewBox "-1.5 -1.5 8 8")
-            -- xmlns attribute not available https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
+            , attribute (Html.Attributes.attribute "xmlns" "http://www.w3.org/2000/svg")
             , attribute <| fill <|
                 "hsl(" ++ fromInt hue ++ " " ++ fromInt saturation ++ "% " ++ fromInt lightness ++ "%)"
             ]
