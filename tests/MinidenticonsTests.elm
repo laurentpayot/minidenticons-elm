@@ -87,7 +87,7 @@ identiconTest =
 
     describe "identicon"
 
-        [ test "empty string username" <| \_ ->
+        [ test "Empty string username" <| \_ ->
             {-
             <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
             </svg>
