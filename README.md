@@ -2,9 +2,9 @@
 
 Super lightweight SVG identicon generator.
 
-[![Version](https://badgen.net/elm-package/v/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
-[![Elm version](https://badgen.net/elm-package/elm/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
-[![License](https://badgen.net/elm-package/license/laurentpayot/minidenticons)](https://github.com/laurentpayot/minidenticons-elm/blob/main/LICENSE)
+[![Version](https://badgen.net/elm-package/v/laurentpayot/minidenticons-elm)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
+[![Elm version](https://badgen.net/elm-package/elm/laurentpayot/minidenticons-elm)](https://github.com/laurentpayot/minidenticons-elm/blob/main/elm.json)
+[![License](https://badgen.net/elm-package/license/laurentpayot/minidenticons-elm)](https://github.com/laurentpayot/minidenticons-elm/blob/main/LICENSE)
 
 ![Minidenticons](https://raw.githubusercontent.com/laurentpayot/minidenticons-elm/main/img/minidenticons.png)
 
