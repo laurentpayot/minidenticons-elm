@@ -12,7 +12,6 @@ module Minidenticons exposing (identicon, simpleHash)
 
 import Bitwise
 import Html exposing (Html)
-import Html.Attributes exposing (attribute)
 import Svg exposing (svg, rect)
 import Svg.Attributes exposing (viewBox, fill, x, y, width, height)
 import String exposing (fromInt)
@@ -94,7 +93,7 @@ identicon saturation lightness username =
             |> (*) (360 // colorsNb)
     in
     svg [ viewBox "-1.5 -1.5 8 8"
-        , attribute "xmlns" "http://www.w3.org/2000/svg"
+        -- no xmlns attribute as Elm will not generate an SVG file https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg#sect1
         , fill <|
             "hsl(" ++ fromInt hue ++ " " ++ fromInt saturation ++ "% " ++ fromInt lightness ++ "%)"
         ] <|

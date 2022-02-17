@@ -7,7 +7,6 @@ import Fuzz exposing (string, tuple)
 import Expect exposing (Expectation)
 
 import Html exposing (Html)
-import Html.Attributes
 import Svg.Attributes exposing (viewBox, fill, x, y, height, width)
 import String exposing (fromInt)
 
@@ -68,7 +67,6 @@ checkIdenticon saturation lightness hue squares =
         [ Q.has
             [ tag "svg"
             , attribute (viewBox "-1.5 -1.5 8 8")
-            , attribute (Html.Attributes.attribute "xmlns" "http://www.w3.org/2000/svg")
             , attribute <| fill <|
                 "hsl(" ++ fromInt hue ++ " " ++ fromInt saturation ++ "% " ++ fromInt lightness ++ "%)"
             ]
@@ -87,8 +85,7 @@ identiconTest =
 
         [ test "Empty string username" <| \_ ->
             {-
-            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
-            </svg>
+            <svg viewBox="-1.5 -1.5 8 8" fill="hsl(60 75% 50%)"></svg>
             -}
             ""
             |> identicon 75 50
@@ -97,7 +94,7 @@ identiconTest =
 
         , test "'foo' username" <| \_ ->
             {-
-            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(60 75% 50%)">
+            <svg viewBox="-1.5 -1.5 8 8" fill="hsl(60 75% 50%)">
                 <rect x="1" y="1" width="1" height="1" />
                 <rect x="2" y="0" width="1" height="1" />
                 <rect x="2" y="1" width="1" height="1" />
@@ -114,7 +111,7 @@ identiconTest =
 
         , test "'alienHead66' username" <| \_ ->
             {-
-            <svg viewBox="-1.5 -1.5 8 8" xmlns="http://www.w3.org/2000/svg" fill="hsl(0 75% 50%)">
+            <svg viewBox="-1.5 -1.5 8 8" fill="hsl(0 75% 50%)">
                 <rect x="0" y="0" width="1" height="1" />
                 <rect x="0" y="2" width="1" height="1" />
                 <rect x="1" y="1" width="1" height="1" />
