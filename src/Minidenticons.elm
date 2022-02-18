@@ -35,7 +35,7 @@ offsetBasis = 2166136261
 
 {-| Hash function used by Minidenticons.
 Based on the [FNV1a](http://www.isthe.com/chongo/tech/comp/fnv/index.html) hash algorithm,
-modified for *signed* 32 bit integers. Always return a *positive* integer.
+modified for *signed* 32 bit integers. Always returns a *positive* integer.
 
     simpleHash "alienHead66" -- 39870209603664160
 
