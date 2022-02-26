@@ -87,6 +87,7 @@ identicon saturation lightness username =
         hash = simpleHash username
         hue : Int
         hue =
+            -- dividing hash by fnvPrime to get the last XOR result for better color randomness
             hash // fnvPrime
             |> Bitwise.shiftRightZfBy 0 -- needed to avoid negative values
             |> modBy colorsNb
