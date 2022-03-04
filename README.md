@@ -50,3 +50,7 @@ Tests results below show that you have roughly a 7% chance to generate a duplica
 ## License
 
 [BSD 3-Clause](https://github.com/laurentpayot/minidenticons-elm/blob/main/LICENSE)
+
+## Stargazers :heart:
+
+[![Stargazers repo roster for @laurentpayot/minidenticons-elm](https://reporoster.com/stars/laurentpayot/minidenticons-elm)](https://github.com/laurentpayot/minidenticons-elm/stargazers)
